@@ -1,36 +1,48 @@
-import React from 'react'
+import React from 'react';
+import StoreItems from './StoreItems';
+import { images } from '../ImagePaths';  
 
+const productsArr = [
+  {
+    title: 'Metallica',
+    price: 20.99,
+    imageUrls: images.metallica,
+  },
+  {
+    title: 'Guns n\' Roses',
+    price: 20.99,
+    imageUrls: images.gunsNroses,
+  },
+  {
+    title: 'Gojira',
+    price: 18.99,
+    imageUrls: images.gojira,
+  },
+  {
+    title: 'Iron Maiden',
+    price: 22.99,
+    imageUrls: images.ironMaiden,
+  },
+  {
+    title: 'Queen',
+    price: 22.99,
+    imageUrls: images.queen,
+  },
+  {
+    title: 'Linkin Park',
+    price: 19.99,
+    imageUrls: images.linkinPark,
+  },
+];
 
 const StorePage = () => {
-
-  const productsArr = [
-    {
-      title: 'Colors',
-      price: 100,
-      imageUrl: 'https://prasadyash2411.github.io/ecom-website/img/Album%201.png',
-    },
-    {
-      title: 'Black and white Colors',
-      price: 50,
-      imageUrl: 'https://prasadyash2411.github.io/ecom-website/img/Album%2.png',
-    },
-    {
-      title: 'Yellow and Black Colors',
-      price: 70,
-      imageUrl: 'https://prasadyash2411.github.io/ecom-website/img/Album%203.png',
-    },
-    {
-      title: 'Blue Color',
-      price: 100,
-      imageUrl: 'https://prasadyash2411.github.io/ecom-website/img/Album%204.png', 
-    },
-  ];
-
   return (
     <div>
-      
+      {productsArr.map((item, index) => (
+        <StoreItems key={index} title={item.title} price={item.price} imageUrls={item.imageUrls} />
+      ))}
     </div>
-  )
-}
+  );
+};
 
-export default StorePage
+export default StorePage;

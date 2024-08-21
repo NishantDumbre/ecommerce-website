@@ -1,0 +1,9 @@
+.card{
+    width: 200px;
+}
+
+.carousel{
+    object-fit: cover;
+    width: 200px;
+    height: auto;
+}
