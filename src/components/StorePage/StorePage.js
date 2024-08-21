@@ -1,4 +1,6 @@
 import React from 'react';
+import classes from './StorePage.module.css'
+import { Container, Row, Col } from 'react-bootstrap';
 import StoreItems from './StoreItems';
 import { images } from '../ImagePaths';  
 
@@ -37,11 +39,15 @@ const productsArr = [
 
 const StorePage = () => {
   return (
-    <div>
-      {productsArr.map((item, index) => (
-        <StoreItems key={index} title={item.title} price={item.price} imageUrls={item.imageUrls} />
-      ))}
-    </div>
+    <Container  fluid className={` ${classes.background}`}>
+      <Row className="justify-content-center">
+        {productsArr.map((item, index) => (
+          <Col xs={12} sm={6} md={6} lg={4} className="my-5 d-flex justify-content-center" key={index}>
+            <StoreItems title={item.title} price={item.price} imageUrls={item.imageUrls} />
+          </Col>
+        ))}
+      </Row>
+    </Container>
   );
 };
 

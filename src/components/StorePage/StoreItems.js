@@ -5,7 +5,7 @@ import classes from './StoreItems.module.css';
 const StoreItems = ({ title, price, imageUrls }) => {
     return (
         <Card className={classes.card}>
-            <Carousel fade>
+            <Carousel fade interval={null}>
                 {imageUrls.map((image, index) => (
                     <Carousel.Item key={index}>
                         <img src={image} alt={`Slide ${index}`} className={classes.carousel} />
