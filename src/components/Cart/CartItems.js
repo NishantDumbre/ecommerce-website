@@ -1,23 +1,29 @@
-import React from 'react'
-import { Row, Col, Button, ListGroup } from 'react-bootstrap'
+import React, { useContext } from 'react';
+import classes from './CartItems.module.css';
+import { Row, Col, Button, ListGroup, Badge } from 'react-bootstrap';
+import { CartContext } from '../../store/context-store';
 
 const CartItems = (props) => {
+    const item = props.allProps;
+    const cartCtx = useContext(CartContext)
 
-    const item = props.allProps
-
+    const removeItemHandler = () =>{
+        cartCtx.removeItem(item)
+    }
 
     return (
-        <ListGroup.Item >
-            <Row>
-                <Col className='col-8' >
-                    <p>{item.title}</p>
+        <ListGroup.Item>
+            <Row className='d-flex align-items-center'>
+                <Col className='col-8'>
+                    <p className='fs-4'>{item.title}</p>
+                    <Badge className={classes.badge}>x{item.quantity}</Badge>
                 </Col>
-                <Col className='col-4' >
-                    <Button>Delete</Button>
+                <Col className='col-4'>
+                    <Button onClick={removeItemHandler} >Delete</Button>
                 </Col>
             </Row>
         </ListGroup.Item>
-    )
+    );
 }
 
-export default CartItems
+export default CartItems;

@@ -18,11 +18,15 @@ const Cart = () => {
         return <CartItems key={item.id} allProps={item} />
     })
 
+    const totalItems = cartCtx.items.reduce((curr, item) =>{
+        return curr+item.quantity
+    }, 0)
+
 
     return (
         <React.Fragment>
             <Nav.Link onClick={toggleShowCart} className='me-2'>
-                <span>Cart</span> <Badge bg="secondary" className='me-4'>{cartItems.length}</Badge>
+                <span>Cart</span> <Badge bg="secondary" className='me-4'>{totalItems}</Badge>
             </Nav.Link>
             <Offcanvas show={show} onHide={toggleShowCart} id='cart' placement='end' >
                 <Offcanvas.Header closeButton >
