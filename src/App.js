@@ -2,14 +2,15 @@ import React from 'react'
 import HeaderNavbar from './components/HeaderNavbar/HeaderNavbar'
 import StorePage from './components/StorePage/StorePage'
 import Footer from './components/Footer/Footer'
+import CartProvider from './store/CartProvider'
 
 const App = () => {
   return (
-    <React.Fragment>
+    <CartProvider>
       <HeaderNavbar />
       <StorePage />
       <Footer />
-    </React.Fragment>
+    </CartProvider>
   )
 }
 

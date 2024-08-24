@@ -1,10 +1,20 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Button, Card, Carousel } from 'react-bootstrap';
 import classes from './StoreItems.module.css';
 
-const StoreItems = ({ title, price, imageUrls }) => {
+import { CartContext } from '../../store/context-store';
+
+const StoreItems = (props) => {
+    const { title, price, imageUrls, id } = props
+
+    const cartCtx = useContext(CartContext)
+
+    const addToCart = () =>{
+        cartCtx.addItem({...props, quantity:1})
+    }
+
     return (
-        <Card className={classes.card}>
+        <Card className={classes.card} id={id}>
             <Carousel fade interval={null}>
                 {imageUrls.map((image, index) => (
                     <Carousel.Item key={index}>
@@ -15,7 +25,7 @@ const StoreItems = ({ title, price, imageUrls }) => {
             <Card.Body>
                 <Card.Title>{title}</Card.Title>
                 <Card.Text>${price}</Card.Text>
-                <Button variant='primary'>Add to cart</Button>
+                <Button variant='primary' onClick={addToCart}>Add to cart</Button>
             </Card.Body>
         </Card>
     );
