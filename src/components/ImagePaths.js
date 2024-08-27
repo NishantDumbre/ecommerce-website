@@ -1,4 +1,4 @@
-// Import images
+// Import images for albums
 import metallica1 from '../assets/Item1/RTL1.png';
 import metallica2 from '../assets/Item1/RTL2.png';
 import metallica3 from '../assets/Item1/RTL3.png';
@@ -23,6 +23,14 @@ import linkinPark1 from '../assets/Item6/LP1.jpg';
 import linkinPark2 from '../assets/Item6/LP2.jpeg';
 import linkinPark3 from '../assets/Item6/LP3.jpg';
 
+
+
+// import banner images
+import banner1 from '../assets/Banners/Gojira.jpg'
+import banner2 from '../assets/Banners/IronMaiden.jpg'
+import banner3 from '../assets/Banners/LambOfGOd.jpg'
+import banner4 from '../assets/Banners/Slipknot.jpg'
+
 // Export images
 export const images = {
   metallica: [metallica1, metallica2, metallica3],
@@ -32,3 +40,10 @@ export const images = {
   queen: [queen1, queen2, queen3],
   linkinPark: [linkinPark1, linkinPark2, linkinPark3],
 };
+
+export const bannerImages = [
+  banner1,
+  banner2,
+  banner3,
+  banner4
+]

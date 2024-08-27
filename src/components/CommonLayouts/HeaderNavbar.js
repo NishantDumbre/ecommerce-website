@@ -1,7 +1,7 @@
 import React from 'react'
 import { Nav, Navbar, NavDropdown } from 'react-bootstrap';
 import Cart from '../Cart/Cart';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 
 const HeaderNavbar = () => {
@@ -10,12 +10,12 @@ const HeaderNavbar = () => {
       <Navbar.Toggle />
         <Navbar.Collapse id="navbar" >
           <Nav className="mx-auto justify-content-between" >
-            <Nav.Link as={Link} to='home' className='mx-5' >Home</Nav.Link>
-            <Nav.Link as={Link} to='store' className='mx-5' >Store</Nav.Link>
+            <Nav.Link as={NavLink} to='home' className='mx-5' >Home</Nav.Link>
+            <Nav.Link as={NavLink} to='store' className='mx-5' >Store</Nav.Link>
             <NavDropdown title='About' id='about-dropdown' className='mx-5' >
-              <NavDropdown.Item as={Link} to='about/2.1' >About us</NavDropdown.Item>
+              <NavDropdown.Item as={NavLink} to='about/2.1' >About us</NavDropdown.Item>
               <NavDropdown.Divider />
-              <NavDropdown.Item as={Link} to='about/2.2' >Contact us</NavDropdown.Item>
+              <NavDropdown.Item as={NavLink} to='about/2.2' >Contact us</NavDropdown.Item>
             </NavDropdown>
           </Nav>
         </Navbar.Collapse>
