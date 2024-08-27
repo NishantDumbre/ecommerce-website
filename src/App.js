@@ -1,15 +1,28 @@
 import React from 'react'
-import HeaderNavbar from './components/HeaderNavbar/HeaderNavbar'
-import StorePage from './components/StorePage/StorePage'
-import Footer from './components/Footer/Footer'
+import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import CartProvider from './store/CartProvider'
+
+import RootLayout from './components/RootLayout'
+import StorePage from './components/StorePage/StorePage'
+import About from './components/About/About'
+
+
+const router = createBrowserRouter([
+  {
+    path: '/',
+    element: <RootLayout />,
+    children: [
+      { path: '/store', element: <StorePage /> },
+      { path: '/about/2.1', element: <About /> },
+    ]
+  }
+
+])
 
 const App = () => {
   return (
     <CartProvider>
-      <HeaderNavbar />
-      <StorePage />
-      <Footer />
+      <RouterProvider router={router} />
     </CartProvider>
   )
 }
