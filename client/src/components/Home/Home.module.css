@@ -1,7 +1,9 @@
 .listGroup{
     width: 70%;
     margin: auto;
-    padding-top: 5%;
+    margin-top: 5%;
+    max-height: 60vh;
+    overflow-y: scroll;
 }
 
 .listGroupItem :hover{
