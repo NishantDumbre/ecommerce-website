@@ -9,13 +9,13 @@ const StoreItems = (props) => {
 
     const cartCtx = useContext(CartContext)
 
-    const addToCart = () =>{
-        cartCtx.addItem({...props, quantity:1})
+    const addToCart = () => {
+        cartCtx.addItem({ ...props, quantity: 1 })
     }
 
     return (
         <Card className={classes.card} id={id}>
-            <Carousel fade interval={null}>
+            <Carousel interval={null}>
                 {imageUrls.map((image, index) => (
                     <Carousel.Item key={index}>
                         <img src={image} alt={`Slide ${index}`} className={classes.carousel} />

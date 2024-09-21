@@ -5,7 +5,7 @@ import { Carousel } from 'react-bootstrap'
 
 
 const loadBanners = bannerImages.map((image, index) => {
-    return <Carousel.Item key={index} fade interval={3000}>
+    return <Carousel.Item key={index} interval={3000}>
         <img src={image} alt={`Slide ${index}`} className={classes.banner} />
     </Carousel.Item>
 })

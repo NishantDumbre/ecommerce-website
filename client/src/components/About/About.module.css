@@ -4,8 +4,22 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    background-image: url('/src/assets/Backgrounds/Background1.jpg');
 }
 
 .container p{
     width: 50%;
+    margin-top: 50px;
+}
+
+.textDiv {  
+    width: 60%;  
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 1);
 }
