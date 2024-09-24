@@ -1,6 +1,8 @@
 import React, { useReducer } from 'react'
 import { CartContext } from './context-store'
 
+
+// skeleton for default cart
 const defaultCart = {
     items: [],
     totalAmount: 0
@@ -18,13 +20,10 @@ const cartReducer = (state, action) => {
             let itemToUpdate = { ...existingItem, quantity: existingItem.quantity + action.item.quantity }
             updatedItems = [...state.items]
             updatedItems[existingItemIndex] = itemToUpdate
-            //console.log(existingItem)
         }
         else {
             updatedItems = [...state.items, action.item]
         }
-        console.log(updatedItems)
-        console.log(updatedTotalAmount)
         return {
             items: updatedItems,
             totalAmount: updatedTotalAmount
@@ -39,6 +38,7 @@ const cartReducer = (state, action) => {
         }
     }
 
+    // return default cart
     return {
         items: [],
         totalAmount: 0
@@ -49,6 +49,7 @@ const CartProvider = (props) => {
 
     const [cartState, dispatchCartAction] = useReducer(cartReducer, defaultCart)
 
+    //values for default cart along used in reducer. Will be passed to the reducer function. 
     const cartContext = {
         items: cartState.items,
         totalAmount: cartState.totalAmount,

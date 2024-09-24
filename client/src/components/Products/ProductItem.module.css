@@ -1,0 +1,54 @@
+.container {
+  padding-top: 30px;
+  display: flex;
+  height: 100%;
+  width: 100%;
+}
+
+
+.carousel {
+  position: sticky;
+  top: 100px;
+  width: 100%;
+  max-width: 400px;
+  min-width: 250px;
+  height: auto;
+  max-height: 500px;
+  margin-bottom: 50px;
+}
+
+img {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+
+.form{
+    margin-top: 100px;
+}
+
+.quantity{
+    width: 70px;
+    margin-right: 20px;
+}
+
+.allReviewsSection{
+    margin-top: 50px;
+}
+
+.reviews{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.button{
+    margin-top: 10px;
+}
+
+@media (max-width: 768px) {
+  .carousel{
+    width: 50%;
+    margin: auto;
+    margin-bottom: 40px;
+  }
+}

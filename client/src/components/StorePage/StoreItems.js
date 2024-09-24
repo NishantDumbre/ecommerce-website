@@ -1,31 +1,31 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { Button, Card, Carousel } from 'react-bootstrap';
 import classes from './StoreItems.module.css';
-
-import { CartContext } from '../../store/context-store';
+import { useNavigate } from 'react-router-dom';
 
 const StoreItems = (props) => {
-    const { title, price, imageUrls, id } = props
+    const navigate = useNavigate()
 
-    const cartCtx = useContext(CartContext)
-
-    const addToCart = () => {
-        cartCtx.addItem({ ...props, quantity: 1 })
+    const checkProduct = (props) =>{
+        console.log('navigate', props.id)
+        navigate(`/store/${props.id}`, {
+            state: props
+        })
     }
 
     return (
-        <Card className={classes.card} id={id}>
+        <Card className={classes.card} id={props.id}>
             <Carousel interval={null}>
-                {imageUrls.map((image, index) => (
+                {props.imageUrls.map((image, index) => (
                     <Carousel.Item key={index}>
                         <img src={image} alt={`Slide ${index}`} className={classes.carousel} />
                     </Carousel.Item>
                 ))}
             </Carousel>
             <Card.Body>
-                <Card.Title>{title}</Card.Title>
-                <Card.Text>${price}</Card.Text>
-                <Button variant='primary' onClick={addToCart}>Add to cart</Button>
+                <Card.Title>{props.title}</Card.Title>
+                <Card.Text>${props.price}</Card.Text>
+                <Button variant='primary' onClick={()=>checkProduct(props)}>Check it out</Button>
             </Card.Body>
         </Card>
     );
