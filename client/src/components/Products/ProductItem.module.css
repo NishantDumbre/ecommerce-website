@@ -27,18 +27,19 @@ img {
     margin-top: 100px;
 }
 
-.quantity{
+.cartForm{
+    margin-top: 20px;
+    display: flex;
+    flex-direction: row;
+}
+
+.selQuantity{
     width: 70px;
     margin-right: 20px;
 }
 
 .allReviewsSection{
     margin-top: 50px;
-}
-
-.reviews{
-    margin-top: 10px;
-    margin-bottom: 10px;
 }
 
 .button{

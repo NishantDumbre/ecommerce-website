@@ -1,14 +1,25 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useContext } from 'react';
 import classes from './ProductItem.module.css';
 import { Button, Carousel, Container, Form, Row, Col, ListGroup } from 'react-bootstrap';
 import { useLocation } from 'react-router-dom';
+import { CartContext } from '../../store/context-store';
+import Reviews from './Reviews';
 
 const ProductItem = () => {
     const [validated, setValidated] = useState(false);
     const reviewRef = useRef();
-    const selectQuantity = useRef()
+    const quantityRef = useRef();
     const location = useLocation();
     const { title, price, imageUrls } = location.state;
+
+    const cartCtx = useContext(CartContext)
+
+    const addToCartHandler = (e) => {
+        e.preventDefault()
+        const selectQuantity = parseInt(quantityRef.current.value)
+        const item = { ...location.state, quantity: selectQuantity }
+        cartCtx.addItem(item)
+    }
 
     const submitReview = (e) => {
         e.preventDefault();
@@ -18,6 +29,46 @@ const ProductItem = () => {
             setValidated(true);
         }
     };
+
+    const reviews = [
+        {
+            name: 'Nishant',
+            review: 'This is an amazing product.',
+        },
+        {
+            name: 'Alice',
+            review: 'I love the quality of this item.',
+        },
+        {
+            name: 'Bob',
+            review: 'Great value for the price!',
+        },
+        {
+            name: 'Charlie',
+            review: 'Highly recommend this product.',
+        },
+        {
+            name: 'David',
+            review: 'The design is beautiful.',
+        },
+        {
+            name: 'Emily',
+            review: 'It exceeded my expectations.',
+        },
+        {
+            name: 'Frank',
+            review: 'I\'ll definitely buy this again.',
+        },
+        {
+            name: 'Grace',
+            review: 'Customer service was excellent.',
+        },
+    ];
+
+    const loadReviews = reviews.map((item, index) => (
+        <Reviews name={item.name} review={item.review} key={index} />
+    ))
+
 
     return (
         <Container fluid className={classes.container}>
@@ -40,39 +91,17 @@ const ProductItem = () => {
                         imperdiet lacus at mauris lacinia, vel placerat purus ullamcorper.
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum
                         imperdiet lacus at mauris lacinia, vel placerat purus ullamcorper.
-
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum
-                        imperdiet lacus at mauris lacinia, vel placerat purus ullamcorper.
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum
-                        imperdiet lacus at mauris lacinia, vel placerat purus ullamcorper.
-
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum
-                        imperdiet lacus at mauris lacinia, vel placerat purus ullamcorper.
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum
-                        imperdiet lacus at mauris lacinia, vel placerat purus ullamcorper.
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum
-                        imperdiet lacus at mauris lacinia, vel placerat purus ullamcorper.
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum
-                        imperdiet lacus at mauris lacinia, vel placerat purus ullamcorper.
-
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum
-                        imperdiet lacus at mauris lacinia, vel placerat purus ullamcorper.
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum
-                        imperdiet lacus at mauris lacinia, vel placerat purus ullamcorper.
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum
-                        imperdiet lacus at mauris lacinia, vel placerat purus ullamcorper.
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum
-                        imperdiet lacus at mauris lacinia, vel placerat purus ullamcorper.
-
                     </p>
                     <h5>Price: ${price}</h5>
-                    <Form className='d-flex mt-3'>
-                        <Form.Select className={classes.quantity} ref={selectQuantity}>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                        </Form.Select>
-                        <Button type='submit'>Add to cart</Button>
+                    <Form onSubmit={addToCartHandler}>
+                        <div className={classes.cartForm} >
+                            <Form.Select className={classes.selQuantity} ref={quantityRef}>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                            </Form.Select>
+                            <Button type='submit' className={classes.button}>Add to cart</Button>
+                        </div>
                     </Form>
 
                     <Row className={classes.form}>
@@ -86,27 +115,7 @@ const ProductItem = () => {
                         </Form>
                     </Row>
                     <ListGroup className={classes.allReviewsSection}>
-                        <ListGroup.Item className={classes.reviews}>
-                            <h5>Buyer name</h5>
-                            <p>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum
-                                imperdiet lacus at mauris lacinia, vel placerat purus ullamcorper.
-                            </p>
-                        </ListGroup.Item>
-                        <ListGroup.Item className={classes.reviews}>
-                            <h5>Buyer name</h5>
-                            <p>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum
-                                imperdiet lacus at mauris lacinia, vel placerat purus ullamcorper.
-                            </p>
-                        </ListGroup.Item>
-                        <ListGroup.Item className={classes.reviews}>
-                            <h5>Buyer name</h5>
-                            <p>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum
-                                imperdiet lacus at mauris lacinia, vel placerat purus ullamcorper.
-                            </p>
-                        </ListGroup.Item>
+                        {loadReviews}
                     </ListGroup>
                 </Col>
             </Row>
