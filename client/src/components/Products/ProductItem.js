@@ -2,8 +2,9 @@ import React, { useState, useRef, useContext } from 'react';
 import classes from './ProductItem.module.css';
 import { Button, Carousel, Container, Form, Row, Col, ListGroup } from 'react-bootstrap';
 import { useLocation } from 'react-router-dom';
-import { CartContext } from '../../store/context-store';
+import { AuthContext, CartContext } from '../../store/context-store';
 import Reviews from './Reviews';
+
 
 const ProductItem = () => {
     const [validated, setValidated] = useState(false);
@@ -13,6 +14,8 @@ const ProductItem = () => {
     const { title, price, imageUrls } = location.state;
 
     const cartCtx = useContext(CartContext)
+    const authCtx = useContext(AuthContext)
+
 
     const addToCartHandler = (e) => {
         e.preventDefault()
@@ -69,6 +72,17 @@ const ProductItem = () => {
         <Reviews name={item.name} review={item.review} key={index} />
     ))
 
+    const reviewForm = <Row className={classes.form}>
+        <Form noValidate validated={validated} onSubmit={submitReview}>
+            <Form.Group controlId='review-area'>
+                <h4>Your name</h4>
+                <Form.Label>Add your review!</Form.Label>
+                <Form.Control as='textarea' placeholder='Add your review' ref={reviewRef} required />
+            </Form.Group>
+            <Button type='submit' className={classes.button}>Submit your review!</Button>
+        </Form>
+    </Row>
+
 
     return (
         <Container fluid className={classes.container}>
@@ -104,16 +118,7 @@ const ProductItem = () => {
                         </div>
                     </Form>
 
-                    <Row className={classes.form}>
-                        <Form noValidate validated={validated} onSubmit={submitReview}>
-                            <Form.Group controlId='review-area'>
-                                <h4>Your name</h4>
-                                <Form.Label>Add your review!</Form.Label>
-                                <Form.Control as='textarea' placeholder='Add your review' ref={reviewRef} required />
-                            </Form.Group>
-                            <Button type='submit' className={classes.button}>Submit your review!</Button>
-                        </Form>
-                    </Row>
+                    {authCtx.user && reviewForm}
                     <ListGroup className={classes.allReviewsSection}>
                         {loadReviews}
                     </ListGroup>

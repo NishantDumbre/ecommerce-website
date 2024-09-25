@@ -9,7 +9,7 @@ import ContactUs from './components/About/ContactUs'
 import Home from './components/Home/Home'
 import Error from './components/Error/Error'
 import ProductItem from './components/Products/ProductItem'
-
+import Login from './components/Login/Login'
 
 
 
@@ -25,7 +25,8 @@ const router = createBrowserRouter([
       { path: '/about/2.1', element: <About /> },
       { path: '/about/2.2', element: <ContactUs /> },
       { path: '/home', element: <Home /> },
-      { path: '/store/:productId', element: <ProductItem /> }
+      { path: '/store/:productId', element: <ProductItem /> },
+      { path: '/login', element: <Login /> }
     ]
   }
 

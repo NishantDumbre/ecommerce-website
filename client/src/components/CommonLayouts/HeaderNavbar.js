@@ -1,13 +1,18 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Nav, Navbar, NavDropdown } from 'react-bootstrap';
 import Cart from '../Cart/Cart';
 import { NavLink } from 'react-router-dom';
+import { AuthContext } from '../../store/context-store';
 
 
 const HeaderNavbar = () => {
+
+  const authCtx = useContext(AuthContext)
+
   return (
     <Navbar expand='sm' className="bg-body-secondary justify-content-between" sticky="top">
       <Navbar.Toggle />
+      {authCtx.user && <Nav.Link className='ms-5' >Welcome!</Nav.Link>}
       <Navbar.Collapse id="navbar" >
         <Nav className="mx-auto justify-content-between" >
           <Nav.Link as={NavLink} to='home' className='mx-5' >Home</Nav.Link>
@@ -19,8 +24,10 @@ const HeaderNavbar = () => {
           </NavDropdown>
         </Nav>
       </Navbar.Collapse>
-      <Cart />
-      {console.log(true)}
+      {!authCtx.user && <Nav.Link as={NavLink} to='login' className='mx-5' >Login</Nav.Link>}
+      {authCtx.user && <Nav.Link as={NavLink} to='login' className='mx-5' >Logout</Nav.Link>}
+      {authCtx.user && <Cart />}
+
     </Navbar>
   )
 }
